@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import Create from './components/CreateScreen';
+import Play from './components/GameScreen';
 
 function App() {
+  // {yellow: [word1, word2, word3, word4], green: [word1]...}
+  const [words, setWords] = useState({
+    yellow: [], green: [], blue: [], purple: [],
+  });
+  const [wordsToColors, setWordsToColors] = useState({});
+  const [wordArray, setWordArray] = useState([]);
+  const [editMode, setEditMode] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      {editMode
+        ? <Create words={words} setWords={setWords} setEditMode={setEditMode} setWordsToColors={setWordsToColors} setWordArray={setWordArray} />
+        : <Play words={words} setEditMode={setEditMode} wordsToColors={wordsToColors} wordArray={wordArray} />}
     </div>
+
   );
 }
 
