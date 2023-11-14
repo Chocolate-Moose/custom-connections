@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/custom-connections/static/css/main.a5059317.css",
+    "main.js": "/custom-connections/static/js/main.41752ba1.js",
+    "index.html": "/custom-connections/index.html",
+    "main.a5059317.css.map": "/custom-connections/static/css/main.a5059317.css.map",
+    "main.41752ba1.js.map": "/custom-connections/static/js/main.41752ba1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a5059317.css",
+    "static/js/main.41752ba1.js"
+  ]
+}
