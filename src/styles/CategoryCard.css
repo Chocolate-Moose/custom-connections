@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed');
+
+.yellow {
+    background-color: #F6E07E;
+}
+
+.green {
+    background-color: #A7C268;
+}
+
+.blue {
+    background-color: #B4C3EB;
+}
+
+.purple {
+    background-color: #B283C1;
+}
+
+.container {
+    min-width: 430px;
+    max-width: 430px;
+    margin-top: 10px;
+    min-height: 100px;
+    max-height: 100px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+
+}

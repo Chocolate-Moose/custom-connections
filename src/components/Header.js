@@ -5,7 +5,7 @@ function Header(props) {
   return (
     <div>
       <h1>Connections</h1>
-      <p>{moment().format('MMMM D YYYY')}</p>
+      <p>{moment().format('MMMM D, YYYY')}</p>
     </div>
   );
 }

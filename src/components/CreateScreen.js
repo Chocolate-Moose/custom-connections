@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/CreateScreen.css';
 
 function Create({
-  words, setWords, setEditMode, setWordsToColors, setWordArray,
+  words, setWords, setEditMode, setWordsToColors, setWordArray, categoryTitles, setCategoryTitles,
 }) {
 //   const [isValidInput, setIsValidInput] = useState(false);
 
@@ -15,9 +15,13 @@ function Create({
   //     setIsValidInput(false);
   //   };
 
-  const handleInputChange = (e) => {
+  const handleWordsChange = (e) => {
     setWords({ ...words, [e.name]: e.value.split(',') });
     // checkIsValidInput();
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategoryTitles({ ...categoryTitles, [e.name]: e.value });
   };
 
   const handleSubmit = () => {
@@ -26,29 +30,46 @@ function Create({
     const newArray = [];
     for (const [color, wordArray] of Object.entries(words)) {
       for (const word of wordArray) {
-        newObj[word.trim()] = color;
-        newArray.push(word.trim());
+        newObj[word.trim().toUpperCase()] = color;
+        newArray.push(word.trim().toUpperCase());
       }
     }
     setWordsToColors(newObj);
-    console.log('wordarray', newArray);
-    console.log(newObj);
     setWordArray(newArray);
   };
+
+  const cards = categories.map((category) => {
+    return (
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
+    // <label key={category}>
+    //   {category}
+    //   <input type="text" name={category} value={words[category]} onChange={(e) => handleInputChange(e.target)} />
+    // </label>
+      <tr key={category}>
+        <td>{category}</td>
+        <td><input label="category" type="text" name={category} value={categoryTitles[category]} onChange={(e) => handleCategoryChange(e.target)} /></td>
+        <td><input label="category" type="text" name={category} value={words[category]} onChange={(e) => handleWordsChange(e.target)} /></td>
+      </tr>
+    );
+  });
 
   return (
     <div className="input-container">
       <p>enter 4 words for each category, separated by commas</p>
-      {categories.map((category) => {
-        return (
-          // eslint-disable-next-line jsx-a11y/label-has-associated-control
-          <label key={category}>
-            {category}
-            <input type="text" name={category} value={words[category]} onChange={(e) => handleInputChange(e.target)} />
-          </label>
-        );
-      })}
-      <button type="button" onClick={() => handleSubmit()}>submit</button>
+      <table className="table">
+        <thead className="table-header">
+          <tr>
+            <th>category color</th>
+            <th>category</th>
+            <th>words</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cards}
+        </tbody>
+      </table>
+
+      <button type="button" className="button" onClick={() => handleSubmit()}>submit</button>
     </div>
   );
 }

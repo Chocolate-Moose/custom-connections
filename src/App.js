@@ -11,13 +11,41 @@ function App() {
   const [wordsToColors, setWordsToColors] = useState({});
   const [wordArray, setWordArray] = useState([]);
   const [editMode, setEditMode] = useState(true);
+  const [categoryTitles, setCategoryTitles] = useState({
+    yellow: '', green: '', blue: '', purple: '',
+  });
+
+  const shuffled = wordArray
+    .map((word) => ({ word, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ word }) => word);
 
   return (
     <div>
       <Header />
       {editMode
-        ? <Create words={words} setWords={setWords} setEditMode={setEditMode} setWordsToColors={setWordsToColors} setWordArray={setWordArray} />
-        : <Play words={words} setEditMode={setEditMode} wordsToColors={wordsToColors} wordArray={wordArray} />}
+        ? (
+          <Create
+            words={words}
+            setWords={setWords}
+            setEditMode={setEditMode}
+            setWordsToColors={setWordsToColors}
+            setWordArray={setWordArray}
+            categoryTitles={categoryTitles}
+            setCategoryTitles={setCategoryTitles}
+          />
+        )
+        : (
+          <Play
+            words={words}
+            setEditMode={setEditMode}
+            wordsToColors={wordsToColors}
+            wordArray={wordArray}
+            shuffled={shuffled}
+            setWordArray={setWordArray}
+            categoryTitles={categoryTitles}
+          />
+        )}
     </div>
 
   );

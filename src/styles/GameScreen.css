@@ -1,6 +1,26 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
     max-width: 450px;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    width: 450px;
+    flex-wrap: wrap;
+}
+
+.button {
+    background-color: white;
+    height: 40px;
+    border-radius: 30px;
+    border-color:black;
+    border-width: 1.3px;
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.submit-button:active {
+    transform: scale(0.99);
 }
