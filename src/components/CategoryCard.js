@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/CategoryCard.css';
+import '../styles/Common.css';
 
 function CategoryCard({
   category, words, title,

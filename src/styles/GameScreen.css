@@ -24,3 +24,15 @@
 .submit-button:active {
     transform: scale(0.99);
 }
+
+.guess-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.guess-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    margin: 2px 0px;
+}

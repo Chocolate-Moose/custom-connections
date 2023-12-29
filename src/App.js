@@ -5,14 +5,22 @@ import Play from './components/GameScreen';
 
 function App() {
   // {yellow: [word1, word2, word3, word4], green: [word1]...}
-  const [words, setWords] = useState({
-    yellow: [], green: [], blue: [], purple: [],
-  });
+  // const [words, setWords] = useState({
+  //   yellow: [], green: [], blue: [], purple: [],
+  // });
   const [wordsToColors, setWordsToColors] = useState({});
   const [wordArray, setWordArray] = useState([]);
   const [editMode, setEditMode] = useState(true);
+  // const [categoryTitles, setCategoryTitles] = useState({
+  //   yellow: '', green: '', blue: '', purple: '',
+  // });
+  // todo: remove testing words at some point
+
   const [categoryTitles, setCategoryTitles] = useState({
-    yellow: '', green: '', blue: '', purple: '',
+    yellow: 'yellow', green: 'green', blue: 'blue', purple: 'purple',
+  });
+  const [words, setWords] = useState({
+    yellow: ['y1', 'y2', 'y3', 'y4'], green: ['g1', 'g2', 'g3', 'g4'], blue: ['b1', 'b2', 'b3', 'b4'], purple: ['p1', 'p2', 'p3', 'p4'],
   });
 
   const shuffled = wordArray
