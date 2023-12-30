@@ -12,7 +12,7 @@ function Card({
     }
   };
   return (
-    <div className={`card ${isSelected ? 'selected' : 'unselected'}`} onClick={() => handleSelect()}>{word}</div>
+    <div key={word} className={`card ${isSelected ? 'selected' : 'unselected'}`} onClick={handleSelect}>{word}</div>
   );
 }
 

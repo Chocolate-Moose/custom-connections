@@ -23,17 +23,18 @@ function Play({
   const [guessGrid, setGuessGrid] = useState([]);
   const [guessString, setGuessString] = useState('');
 
-  const renderCards = shuffled.map((word) => {
-    return <Card word={word} isSelected={selectedWords.includes(word)} setSelectedWords={setSelectedWords} selectedWords={selectedWords} />;
+  const renderCards = shuffled.map(({ word, sort }) => {
+    return <Card key={sort} word={word} isSelected={selectedWords.includes(word)} setSelectedWords={setSelectedWords} selectedWords={selectedWords} />;
   });
 
   const renderCategories = correctColors.map((category) => {
-    return <CategoryCard category={category} words={words[category]} title={categoryTitles[category]} />;
+    return <CategoryCard key={category} category={category} words={words[category]} title={categoryTitles[category]} />;
   });
 
-  const renderGuessGrid = guessGrid.map((guess) => {
+  const renderGuessGrid = guessGrid.map((guess, i) => {
     return (
-      <div className="guess-row">
+      // eslint-disable-next-line react/no-array-index-key
+      <div className="guess-row" key={i}>
         {guess.map((color) => {
           return <div className={`guess-box ${color}`} />;
         })}
@@ -77,7 +78,6 @@ function Play({
 
     // add guess to color grid
     setGuessGrid([...guessGrid, colorsGuessed]);
-    console.log(guessGrid);
 
     // not all one category
     for (const color of colorsGuessed) {
@@ -116,21 +116,27 @@ function Play({
           <p>mistakes remaining: </p>
           {renderMistakeDots}
         </div>
+        <div className="button-container">
+          <button type="button" className="button" onClick={() => setEditMode(true)}>edit</button>
+          <button type="button" className="button" onClick={() => setSelectedWords([])}>deselect all</button>
+          <button type="button" className={`button ${selectedWords.length !== 4 ? 'submit-disabled' : 'button-dark'}`} disabled={selectedWords.length !== 4} onClick={submitCards}>
+            submit
+          </button>
+        </div>
 
-        <button type="button" className={`button ${selectedWords.length !== 4 ? 'submit-disabled' : 'submit-active'}`} disabled={selectedWords.length !== 4} onClick={() => submitCards()}>
-          submit
-        </button>
-        <button type="button" className="button" onClick={() => setEditMode(true)}>edit</button>
       </div>
       <div>
-        <Rodal visible={modalOpen} onClose={() => setModalOpen(false)} animation="slideUp">
+        <Rodal visible={modalOpen} onClose={() => setModalOpen(false)} animation="slideUp" height={300}>
           {/* change this based on number of guesses left */}
-          <div>Perfect!</div>
-          <div>Custom Connections #17</div>
-          {renderGuessGrid}
-          <CopyToClipboard text={guessString}>
-            <button type="button">share your results</button>
-          </CopyToClipboard>
+          <div className="modal-container">
+            <div className="congrats-title">Perfect!</div>
+            <div>Custom Connections #17</div>
+            {renderGuessGrid}
+            <CopyToClipboard text={guessString}>
+              <button type="button" className="button button-dark">share your results</button>
+            </CopyToClipboard>
+          </div>
+
         </Rodal>
       </div>
     </div>

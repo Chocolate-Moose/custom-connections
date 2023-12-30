@@ -5,7 +5,6 @@ import '../styles/Common.css';
 function CategoryCard({
   category, words, title,
 }) {
-  console.log(category);
   return (
     <div className={`container ${category}`}>
       <div><strong>{title}</strong></div>

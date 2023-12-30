@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Header from './components/Header';
 import Create from './components/CreateScreen';
 import Play from './components/GameScreen';
@@ -23,10 +23,17 @@ function App() {
     yellow: ['y1', 'y2', 'y3', 'y4'], green: ['g1', 'g2', 'g3', 'g4'], blue: ['b1', 'b2', 'b3', 'b4'], purple: ['p1', 'p2', 'p3', 'p4'],
   });
 
-  const shuffled = wordArray
-    .map((word) => ({ word, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ word }) => word);
+  // const shuffled = useMemo(() => wordArray
+  //   .map((word) => ({ word, sort: Math.random() }))
+  //   .sort((a, b) => a.sort - b.sort)
+  //   .map(({ word }) => word), [wordArray]);
+
+  const shuffled = useMemo(
+    () => wordArray
+      .map((word) => ({ word, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort),
+    [wordArray],
+  );
 
   return (
     <div>
