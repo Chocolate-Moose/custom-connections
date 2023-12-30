@@ -41,6 +41,10 @@ function Play({
     );
   });
 
+  const renderMistakeDots = Array.from(Array(numMistakes), (_, i) => {
+    return <div className="mistake-dot" />;
+  });
+
   const oneAway = () => {
     const colorCount = {
       yellow: 0, green: 0, blue: 0, purple: 0,
@@ -56,7 +60,7 @@ function Play({
   };
 
   const makeGuessString = () => {
-    let str = 'Connections\nPuzzle #17\n';
+    let str = 'Custom Connections\nPuzzle #17\n';
     for (const guess of guessGrid) {
       for (const color of guess) {
         str += COLOR_EMOJIS[color];
@@ -108,15 +112,21 @@ function Play({
         <div className="card-container">
           {renderCards}
         </div>
-        <p>mistakes remaining: {numMistakes}</p>
-        <button type="button" className="button" onClick={() => submitCards()}>submit</button>
+        <div className="mistakes-container">
+          <p>mistakes remaining: </p>
+          {renderMistakeDots}
+        </div>
+
+        <button type="button" className={`button ${selectedWords.length !== 4 ? 'submit-disabled' : 'submit-active'}`} disabled={selectedWords.length !== 4} onClick={() => submitCards()}>
+          submit
+        </button>
         <button type="button" className="button" onClick={() => setEditMode(true)}>edit</button>
       </div>
       <div>
         <Rodal visible={modalOpen} onClose={() => setModalOpen(false)} animation="slideUp">
           {/* change this based on number of guesses left */}
           <div>Perfect!</div>
-          <div>Connections #17</div>
+          <div>Custom Connections #17</div>
           {renderGuessGrid}
           <CopyToClipboard text={guessString}>
             <button type="button">share your results</button>

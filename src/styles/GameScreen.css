@@ -12,13 +12,24 @@
 }
 
 .button {
-    background-color: white;
     height: 40px;
-    border-radius: 30px;
-    border-color:black;
-    border-width: 1.3px;
+    border-radius: 32px;
+    border-width: 1.4px;
     width: 100px;
     margin-bottom: 20px;
+    background-color: white;
+    border-color:black;
+}
+
+.submit-active {
+    background-color: black;
+    color: white;
+    border: unset;
+}
+
+.submit-disabled {
+    border-color: #7F7F7F;
+    color: #7F7F7F;
 }
 
 .submit-button:active {
@@ -35,4 +46,19 @@
     height: 32px;
     border-radius: 4px;
     margin: 2px 0px;
+}
+
+.mistakes-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mistake-dot {
+    background-color: #58574D;
+    width: 16px;
+    height: 16px;
+    border-radius: 20px;
+    margin-top: 4px;
+    margin-left: 4px;
 }
